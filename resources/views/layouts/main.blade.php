@@ -13,9 +13,6 @@
     @include('includes.header')
     <main class="container">
         <section id="@yield('section-id')">
-            <div class="card ">
-
-            </div>
             @yield('content')
         </section>
     </main>
