@@ -11,8 +11,8 @@
 
 <body>
     @include('includes.header')
-    <main class="container">
-        <section id="@yield('section-id')">
+    <main>
+        <section id="@yield('section-id')" class="container my-5">
             @yield('content')
         </section>
     </main>
