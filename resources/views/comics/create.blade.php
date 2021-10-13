@@ -6,13 +6,14 @@
 {{-- FORM PER INSERIRE NUOVO FUMETTO --}}
     <h1 class="text-center">Inserisci un nuovo fumetto</h1>
     <form action="{{ route('comics.store') }}" method="POST" class="row g-3">
+        @csrf
         <div class="col-md-6">
             <label for="title" class="form-label">Titolo</label>
             <input type="text" class="form-control" id="title" name="title">
         </div>
         <div class="col-md-6">
             <label for="series" class="form-label">Serie</label>
-            <input type="password" class="form-control" id="series" name="series">
+            <input type="text" class="form-control" id="series" name="series">
         </div>
         <div class="col-6">
             <label for="sale_date" class="form-label">Uscita</label>

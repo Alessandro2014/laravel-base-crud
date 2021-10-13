@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+
 class ComicController extends Controller
 {
     /**
@@ -36,7 +37,9 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $comic = Comic::create($data);
+        return redirect()->route('comics.show', $comic);
     }
 
     /**

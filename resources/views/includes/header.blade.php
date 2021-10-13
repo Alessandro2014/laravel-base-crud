@@ -23,8 +23,8 @@
                         href="{{ route('comics.index') }}">Comics</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('comics.index') ? 'active' : '' }}"
-                        href="{{ route('comics.index') }}">Inserisci Nuovo<i class="fas fa-pencil-alt ms-1"></i></a>
+                    <a class="nav-link {{ request()->routeIs('comics.create') ? 'active' : '' }}"
+                        href="{{ route('comics.create') }}">Inserisci Nuovo<i class="fas fa-pencil-alt ms-1"></i></a>
                 </li>
             </ul>
         </div>
