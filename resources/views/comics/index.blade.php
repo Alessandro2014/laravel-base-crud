@@ -3,10 +3,16 @@
 @section('section-id', 'comics')
 
 @section('content')
-    {{-- CARDS CON FUMETTI --}}
+    {{-- FORM DI RICERCA --}}
+    <form method="GET" class="d-flex justify-content-center mb-5">
+        <input class="form-control me-2" type="text" name="search" placeholder="Cerca un fumetto.."
+            value="{{ $search }}" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Cerca</button>
+    </form>
+        {{-- CARDS CON FUMETTI --}}
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col">
-          <div class="card" style="width: 16rem;">
+            <div class="card" style="width: 16rem;">
                 @forelse ($comics as $comic)
                     <img src="{{ $comic->thumb }}" class="card-img-top " alt="{{ $comic->title }}">
                     <div class="card-body">

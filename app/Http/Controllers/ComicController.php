@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comic;
+use Illuminate\Http\Request;
 class ComicController extends Controller
 {
     /**
@@ -10,10 +11,11 @@ class ComicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $comics = Comic::all();
-        return view('comics.index', compact('comics'));
+        $search = $request->query('search');
+        $comics = Comic::where('title', 'LIKE', "%$search%")->get();
+        return view('comics.index', compact('comics', 'search'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**

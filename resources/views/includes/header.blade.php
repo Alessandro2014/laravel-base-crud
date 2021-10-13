@@ -1,3 +1,8 @@
+@section('cdns')
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css'
+        integrity='sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=='
+        crossorigin='anonymous' />
+@endsection
 {{-- HEADER CON LINK DI NAVIGAZIONE --}}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -7,20 +12,21 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-between">
                 <li class="nav-item">
+                    {{-- TERNARIO PER INSERIRE CLASSE ACTIVE --}}
                     <a class="nav-link  {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('/comics') ? 'active' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('comics.index') ? 'active' : '' }}"
                         href="{{ route('comics.index') }}">Comics</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('comics.index') ? 'active' : '' }}"
+                        href="{{ route('comics.index') }}">Inserisci Nuovo<i class="fas fa-pencil-alt ms-1"></i></a>
+                </li>
             </ul>
-            {{-- <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Cerca un fumetto.." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Cerca</button>
-            </form> --}}
         </div>
     </div>
 </nav>
