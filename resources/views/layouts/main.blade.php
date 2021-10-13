@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ 'css/app.css' }}">
     <title>Comics - @yield('title')</title>
+    @yield('cdns')
 </head>
 
 <body>
@@ -16,7 +17,5 @@
             @yield('content')
         </section>
     </main>
-
-
 </body>
 </html>
