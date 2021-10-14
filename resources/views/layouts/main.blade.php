@@ -11,11 +11,16 @@
 </head>
 
 <body>
+    {{-- HEADER --}}
     @include('includes.header')
     <main>
+        {{-- CONTENUTO --}}
         <section id="@yield('section-id')" class="container my-3">
             @yield('content')
         </section>
     </main>
+    {{-- SCRIPTS --}}
+    @yield('scripts')
+    <script src="{{ asset('js/app.js')}}"></script>
 </body>
 </html>

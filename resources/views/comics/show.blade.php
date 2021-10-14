@@ -24,7 +24,7 @@
     <div class="card-body text-center">
         <a href="{{ route('comics.index', $comic->id) }}" class="btn btn-secondary p-2">Indietro</a>
         <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning p-2">Modifica</a>
-        <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="d-inline">
+        <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="d-inline" id="delete-form">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">
@@ -38,7 +38,19 @@
             </button>
         </form>
     </div>
+@endsection
 
-
-
+@section('scripts')
+    <script>
+        // RECUPERO L'ID
+        const deleteForm = document.getElementById('delete-form');
+        // INTERCETTO IL SUBMIT
+        deleteForm.addEventListener('submit', function(event) {
+            // BLOCCO L'EVENTO DI CANCELLAZIONE
+            event.preventDefault();
+            // ISTRUZIONE SUL COSA FARE
+            const confirmEvent = confirm('Sei sicuro di voler cancellare {{ $comic->title }}?');
+            if (confirmEvent) this.submit();
+        });
+    </script>
 @endsection

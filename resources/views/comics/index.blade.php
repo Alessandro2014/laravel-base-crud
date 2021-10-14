@@ -22,7 +22,7 @@
                             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                     </symbol>
                 </svg>
-                Il fumetto {{ (session('delete')) }} è stato eliminato!
+                Il fumetto {{ session('delete') }} è stato eliminato!
             </div>
         </div>
     @endif
@@ -44,7 +44,8 @@
                         <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-info p-2">Descrizione</a>
                         <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning p-2">Modifica</a>
                         {{-- FORM PER LA CANCELLAZIONE DEL FUMETTO --}}
-                        <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('comics.destroy', $comic->id) }}" method="POST"
+                            class="d-inline delete-form" data-comic="{{ $comic->title }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">
@@ -65,5 +66,22 @@
             <h6 class="text-center">Nessun fumetto trovato</h6>
         @endforelse
     </div>
+@endsection
 
+@section('scripts')
+    <script>
+        // RECUPERO LA CLASSE
+        const deleteForm = document.querySelectorAll('.delete-form');
+        // INTERCETTO IL SUBMIT
+        deleteForm.forEach(form => {
+            form.addEventListener('submit', function(event) {
+                const name = form.getAttribute('data-comic');
+                // BLOCCO L'EVENTO DI CANCELLAZIONE
+                event.preventDefault();
+                // ISTRUZIONE SUL COSA FARE
+                const confirmEvent = confirm(`Sei sicuro di voler cancellare ${name}?`);
+                if (confirmEvent) this.submit();
+            });
+        })
+    </script>
 @endsection

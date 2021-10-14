@@ -41,7 +41,6 @@
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Modifica</button>
-            {{-- <button type="reset" class="btn btn-secondary">Cancella</button> --}}
         </div>
     </form>
 @endsection
