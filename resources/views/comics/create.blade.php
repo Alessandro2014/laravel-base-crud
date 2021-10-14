@@ -1,10 +1,12 @@
 @extends('layouts.main')
+
 @section('title', 'Comics')
+
 @section('section-id', 'comics')
 
 @section('content')
-{{-- FORM PER INSERIRE NUOVO FUMETTO --}}
-    <h1 class="text-center">Inserisci un nuovo fumetto</h1>
+    {{-- FORM PER INSERIRE NUOVO FUMETTO --}}
+    <h1 class="text-center mb-3">Inserisci un nuovo fumetto</h1>
     <form action="{{ route('comics.store') }}" method="POST" class="row g-3">
         @csrf
         <div class="col-md-6">
@@ -35,14 +37,6 @@
             <label for="description" class="form-label">Descrizione</label>
             <textarea class="form-control" id="description" name="description" rows="3"></textarea>
         </div>
-        {{-- <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
-      </div>
-    </div> --}}
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Salva</button>
             <button type="reset" class="btn btn-secondary">Cancella</button>

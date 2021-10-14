@@ -24,7 +24,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('comics.create') ? 'active' : '' }}"
-                        href="{{ route('comics.create') }}">Inserisci Nuovo<i class="fas fa-pencil-alt ms-1"></i></a>
+                        href="{{ route('comics.create') }}">Inserisci Nuovo<i class="fas fa-pencil-alt"></i></a>
                 </li>
             </ul>
         </div>

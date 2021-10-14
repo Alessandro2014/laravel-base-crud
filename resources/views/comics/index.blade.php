@@ -12,7 +12,7 @@
     {{-- CARDS CON FUMETTI --}}
     <div class="row">
         @forelse ($comics as $comic)
-            <div class="col-3">
+            <div class="col-3 mb-4">
                 <div class="card" style="width: 16rem;">
                     <img src="{{ $comic->thumb }}" class="card-img-top " alt="{{ $comic->title }}">
                     <div class="card-body">
@@ -25,7 +25,9 @@
                         <li class="list-group-item">Prezzo: €{{ $comic->price }}</li>
                     </ul>
                     <div class="card-body text-center">
-                        <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-info p-2">Vai alla descrizione</a>
+                        <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-info p-2">Descrizione</a>
+                        <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning p-2">Modifica</a>
+
                     </div>
                 </div>
             </div>

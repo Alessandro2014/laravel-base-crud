@@ -13,7 +13,7 @@
 <body>
     @include('includes.header')
     <main>
-        <section id="@yield('section-id')" class="container my-5">
+        <section id="@yield('section-id')" class="container my-3">
             @yield('content')
         </section>
     </main>
