@@ -35,7 +35,7 @@
             <input type="text" class="form-control" id="thumb" name="thumb" value="{{ $comic->thumb }}">
         </div>
         <div class="col-md-12">
-            <label for="description" class="form-label">Descrizione</label>
+            <label for="description" class="form-label">Des.</label>
             <textarea class="form-control" id="description" name="description" rows="3"
                 value="">{{ $comic->description }}</textarea>
         </div>

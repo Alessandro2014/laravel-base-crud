@@ -87,7 +87,22 @@ class ComicController extends Controller
     public function destroy(Comic $comic)
     {
         $comic->delete();
-        return redirect()->route('comics.index')->with('delete', $comic->title);
+        return redirect()->route('comics.index')->with('success', $comic->title);
         // $flight->history()->withTrashed()->get();
+    }
+
+    public function trash(Comic $comic)
+    {
+        $comics = Comic::onlyTrashed()->get();
+        return view('comics.trash', compact('comics'));
+        
+    }
+
+    public function restore($id)
+    {
+        $comic = Comic::withTrashed()->find($id);
+        $comic->restore();
+        return redirect()->route('comics.index')->with('success', $comic->title);
+        
     }
 }

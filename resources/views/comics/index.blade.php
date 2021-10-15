@@ -4,13 +4,18 @@
 
 @section('content')
     {{-- FORM DI RICERCA --}}
-    <form method="GET" class="d-flex mb-5">
-        <input class="form-control me-2" type="text" name="search" placeholder="Cerca un fumetto.."
-            value="{{ $search }}" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Cerca</button>
-    </form>
+    <div class="d-flex justify-content-around mb-5">
+        <form method="GET" class="d-flex">
+            <input class="form-control me-2" type="text" name="search" placeholder="Cerca un fumetto.."
+                value="{{ $search }}" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Cerca</button>
+        </form>
+        {{-- BOTTONE CESTINO --}}
+        <a href="{{ route('comics.trash') }}" class="btn btn-secondary p-2 ">Cestino</a>
+    </div>
+
     {{-- CARDS CON FUMETTI --}}
-    @if (session('delete'))
+    @if (session('success'))
         <div class="alert alert-success d-flex align-items-center" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                 <use xlink:href="#check-circle-fill" />
@@ -22,7 +27,7 @@
                             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                     </symbol>
                 </svg>
-                Il fumetto {{ session('delete') }} è stato eliminato!
+                Il fumetto {{ session('success') }} è stato eliminato!
             </div>
         </div>
     @endif
@@ -41,7 +46,7 @@
                         <li class="list-group-item">Prezzo: €{{ $comic->price }}</li>
                     </ul>
                     <div class="card-body text-center">
-                        <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-info p-2">Descrizione</a>
+                        <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-info p-2">Des.</a>
                         <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning p-2">Modifica</a>
                         {{-- FORM PER LA CANCELLAZIONE DEL FUMETTO --}}
                         <form action="{{ route('comics.destroy', $comic->id) }}" method="POST"
@@ -58,7 +63,6 @@
                                 </svg>
                             </button>
                         </form>
-
                     </div>
                 </div>
             </div>
