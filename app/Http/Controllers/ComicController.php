@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ComicController extends Controller
 {
@@ -26,7 +27,8 @@ class ComicController extends Controller
      */
     public function create()
     {
-        return view('comics.create');
+        $comic = new Comic();
+        return view('comics.create', compact('comic'));
     }
 
     /**
@@ -41,8 +43,6 @@ class ComicController extends Controller
         $request->validate([
             'title' => 'required|max:100|min:5|unique:comics',
             'description' => 'required|string|min:20',
-            'price' => 'numeric',
-            'thumb' => 'image',
             'sale_date' => 'required|date',
             'type' => 'required|string|max:50',
             'series' => 'required|string|max:50'
@@ -84,6 +84,15 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        // VALIDAZIONE
+        $request->validate([
+            'title' => [Rule::unique('comics')->ignore($comic->id), 'required', 'max:100', 'min:5'],
+            'description' => 'required|string|min:20',
+            'sale_date' => 'required|date',
+            'type' => 'required|string|max:50',
+            'series' => 'required|string|max:50'
+        ]);
+
         $data = $request->all();
         $comic->update($data);
         return redirect()->route('comics.show', $comic->id);
@@ -106,7 +115,6 @@ class ComicController extends Controller
     {
         $comics = Comic::onlyTrashed()->get();
         return view('comics.trash', compact('comics'));
-        
     }
 
     public function restore($id)
@@ -114,6 +122,5 @@ class ComicController extends Controller
         $comic = Comic::withTrashed()->find($id);
         $comic->restore();
         return redirect()->route('comics.index')->with('success', $comic->title);
-        
     }
 }
