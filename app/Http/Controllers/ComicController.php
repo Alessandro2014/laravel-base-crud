@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-
 class ComicController extends Controller
 {
     /**
@@ -13,7 +12,7 @@ class ComicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Comic $comic)
     {
         $search = $request->query('search');
         $comics = Comic::where('title', 'LIKE', "%$search%")->get();
