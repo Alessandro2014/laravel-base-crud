@@ -15,7 +15,7 @@
                 value="{{ old('title', $comic->title) }}">
             @error('title')
                 <div class="invalid-feedback">
-                    Inserisci un titolo valido
+                    Inserisci un titolo valido e non già esistente
                 </div>
             @enderror
         </div>
