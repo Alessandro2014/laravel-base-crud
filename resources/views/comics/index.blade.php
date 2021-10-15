@@ -44,6 +44,9 @@
                         <li class="list-group-item">Uscita: {{ $comic->sale_date }}</li>
                         <li class="list-group-item">Tipo: {{ $comic->type }}</li>
                         <li class="list-group-item">Prezzo: €{{ $comic->price }}</li>
+                        {{-- DATA CREAZIONE E ULTIMA MODIFICA --}}
+                        <li class="list-group-item">Data creazione: {{ $comic->type }}</li>
+                        <li class="list-group-item">Ultima modifica: €{{ $comic->price }}</li>
                     </ul>
                     <div class="card-body text-center">
                         <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-info p-2">Des.</a>
